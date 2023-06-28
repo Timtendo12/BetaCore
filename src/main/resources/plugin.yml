@@ -1,0 +1,18 @@
+name: MineCraftBetaTest
+main: nl.timtendo12.Main
+version: 1.0.0
+authors: [ Timtendo12 ]
+description: Testing this shit
+commands:
+  ping:
+    description: Ping the server!
+    usage: /ping
+  time:
+    description: Set the time more efficient
+    usage: /time <set?> <time>
+  heal:
+    description: Heal the player
+    usage: /heal <username?>
+  chickenbomb:
+    description: ALLUHA SNACKBAR
+    usage: /chickenbomb
