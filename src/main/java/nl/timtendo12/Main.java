@@ -7,14 +7,11 @@ import nl.timtendo12.commands.TimeCommand;
 import nl.timtendo12.config.BetaDatabase;
 import nl.timtendo12.config.BetaSettings;
 import nl.timtendo12.listeners.BetaPlayerListener;
+import org.bukkit.Server;
 import org.bukkit.event.Event;
 import org.bukkit.plugin.java.JavaPlugin;
 
 import java.io.File;
-import java.io.IOException;
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.nio.file.Paths;
 import java.util.logging.Logger;
 
 public class Main extends JavaPlugin {
@@ -23,6 +20,8 @@ public class Main extends JavaPlugin {
 
 	public static BetaDatabase database;
 
+	public static Server server;
+
 	private final BetaPlayerListener betaPlayerListener = new BetaPlayerListener(this);
 
 	@Override
@@ -30,20 +29,7 @@ public class Main extends JavaPlugin {
 
 		settings = new BetaSettings(new File(this.getDataFolder(), "config.yml"));
 		database = new BetaDatabase();
-
-		// get test.yml from the jar and copy it to the data folder
-
-		File configFile = new File(this.getDataFolder(), "test.yml");
-		if (!configFile.exists()) {
-			// copy the test.yml file from the jar to the data folder
-			try {
-				String strpath = this.getDataFolder() + File.separator + "test.yml";
-				Path path = Paths.get(strpath);
-				if (configFile.createNewFile()) Files.copy(path, configFile.toPath());
-			} catch (IOException e) {
-				throw new RuntimeException(e);
-			}
-		}
+		server = this.getServer();
 
 		Logger log = this.getServer().getLogger();
 		log.info("Enabling MineCraftBetaTest version " + getDescription().getVersion());
@@ -92,5 +78,9 @@ public class Main extends JavaPlugin {
 	
 	public static BetaDatabase getPluginDatabase() {
 		return database;
+	}
+
+	public static Server getCurrentServer() {
+		return server;
 	}
 }

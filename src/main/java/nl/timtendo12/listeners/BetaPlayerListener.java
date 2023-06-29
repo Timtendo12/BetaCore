@@ -65,8 +65,8 @@ public class BetaPlayerListener extends PlayerListener {
 
 		event.setJoinMessage(replaceColorChar(settings.getConfigString("join-message-format"), '&').replace("%player%", event.getPlayer().getDisplayName()));
 
-//		if (!database.createUser(event.getPlayer())) {
-//			event.getPlayer().sendMessage(replaceColorChar("&cFailed to create user in database!", '&'));
-//		} else event.getPlayer().sendMessage(replaceColorChar("&aCreated user in database!", '&'));
+		if (!database.createUser(event.getPlayer())) {
+			event.getPlayer().sendMessage(replaceColorChar("&cFailed to create user in database!", '&'));
+		} else event.getPlayer().sendMessage(replaceColorChar("&aCreated user in database!", '&'));
 	}
 }
