@@ -16,3 +16,6 @@ commands:
   chickenbomb:
     description: ALLUHA SNACKBAR
     usage: /chickenbomb
+  weather:
+    description: Change the weather
+    usage: /weather (sun,clear)/rain/(thunder,storm)

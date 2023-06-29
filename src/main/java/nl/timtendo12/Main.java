@@ -1,9 +1,6 @@
 package nl.timtendo12;
 
-import nl.timtendo12.commands.ChickenBombCommand;
-import nl.timtendo12.commands.HealCommand;
-import nl.timtendo12.commands.PingCommand;
-import nl.timtendo12.commands.TimeCommand;
+import nl.timtendo12.commands.*;
 import nl.timtendo12.config.BetaDatabase;
 import nl.timtendo12.config.BetaSettings;
 import nl.timtendo12.listeners.BetaPlayerListener;
@@ -59,11 +56,13 @@ public class Main extends JavaPlugin {
 		this.getCommand("time").setExecutor(new TimeCommand(this));
 		this.getCommand("heal").setExecutor(new HealCommand(this));
 		this.getCommand("chickenbomb").setExecutor(new ChickenBombCommand(this));
+		this.getCommand("weather").setExecutor(new WeatherCommand(this));
 
 		//registering events
 		log.info("Registering events");
 		getServer().getPluginManager().registerEvent(Event.Type.PLAYER_CHAT, betaPlayerListener, Event.Priority.Normal, this);
 		getServer().getPluginManager().registerEvent(Event.Type.PLAYER_JOIN, betaPlayerListener, Event.Priority.Normal, this);
+		getServer().getPluginManager().registerEvent(Event.Type.PLAYER_INTERACT, betaPlayerListener, Event.Priority.Normal, this);
 	}
 
 	@Override
